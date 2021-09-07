@@ -1,0 +1,42 @@
+
+<mat-card style= "width: 600px;">
+    <mat-progress-bar style="background-color: darkgrey;" *ngIf="!isProfileLoaded" mode="indeterminate" value="40"></mat-progress-bar>
+    <mat-card-header >
+        <mat-card-title>{{title}}</mat-card-title>
+        <p *ngIf="!isProfileLoaded" >Loading profile...</p>
+    </mat-card-header>
+
+    <mat-card-content>	
+        <form #form="ngForm" [formGroup]="formGroup">
+            <div class="wrapper" >
+                <div class="first">
+                    <mat-label>Username: </mat-label>
+                </div>
+                <div class="second">
+                    <p style="display: contents; font-weight: lighter;">{{user.username}}</p>
+                </div>
+            </div>
+         
+            <mat-label>First Name: </mat-label>
+            <mat-form-field  >
+              <input matInput [readonly]="isProfileSaving" formControlName="firstName" />
+            </mat-form-field>
+
+            <mat-label>Last Name: </mat-label>
+            <mat-form-field>
+              <input matInput [readonly]="isProfileSaving" formControlName="lastName" />
+            </mat-form-field>
+            <mat-progress-bar style="background-color: darkgrey;" *ngIf="isProfileSaving" mode="indeterminate" value="40"></mat-progress-bar>
+            <p *ngIf="isProfileSaving" >Saving Profile</p>
+            <p *ngIf="isSavingerror" style="color: red;" >Error! {{errorMessage}}</p>
+            <button mat-button style="background-color: teal; left: 10px;" (click)="saveUserProfile()" >Save</button> <br>
+
+            <mat-label>Email: </mat-label>
+            <mat-form-field>
+                <input matInput [readonly]="true" formControlName="email" />
+            </mat-form-field>
+            <mat-error *ngIf="formGroup.controls['email'].hasError('email')">Invalid email</mat-error>
+        </form>
+    </mat-card-content>  
+</mat-card>
+

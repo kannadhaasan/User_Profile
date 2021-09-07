@@ -1,0 +1,25 @@
+body{
+    background-color: whitesmoke;
+}
+
+.mat-card{
+    background: wheat;
+    opacity: 1;
+}
+
+.wrapper {
+    width: 500px;
+    overflow: hidden; 
+}
+.first {
+   
+    float:left; /* add this */
+}
+.second {
+    display: contents;
+    overflow: hidden; /* if you don't want #second to wrap below #first */
+}
+
+::ng-deep .mat-card,  .mat-card-content, .mat-card-subtitle{
+    font-weight: bold  !important;
+}
